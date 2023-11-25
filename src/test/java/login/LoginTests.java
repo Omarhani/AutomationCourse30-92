@@ -37,6 +37,7 @@ public class LoginTests{
         readDataFromJson = new ReadDataFromJson();
         System.out.println(readDataFromJson.readJsonFile().Login.InvalidCredentials.InvalidPassword.Username);
         System.out.println(readDataFromJson.readJsonFile().Login.InvalidCredentials.InvalidPassword.Password);
+
     }
 
     @Test
