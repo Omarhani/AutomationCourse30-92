@@ -3,6 +3,7 @@ package login;
 
 import base.BaseTests;
 import data.Login;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import reader.ReadDataFromJson;
 
@@ -40,9 +41,39 @@ public class LoginTests{
 
     }
 
-    @Test
-    public void testSuccessfulLogin(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @DataProvider
+    public Object[][] testData() throws FileNotFoundException {
+        readDataFromJson = new ReadDataFromJson();
+        return readDataFromJson.readJsonFile().Login1;
+    }
+    @Test(dataProvider = "testData")
+    public void testSuccessfulLogin(String username,String password){
 //        homePage.clickOnLoginLink();
+        System.out.println(username);
+        System.out.println(password);
     }
 
 
