@@ -10,7 +10,7 @@ import reader.ReadDataFromJson;
 
 import java.io.FileNotFoundException;
 
-public class LoginTests extends BaseTests{
+public class LoginTests1 extends BaseTests{
     @DataProvider
     public Object[][] testData() throws FileNotFoundException {
         readDataFromJson = new ReadDataFromJson();

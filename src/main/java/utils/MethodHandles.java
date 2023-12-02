@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class MethodHandles {
 
-    WebDriver driver;
+    protected WebDriver driver;
 
     WebDriverWait wait;
     private final By loader = By.cssSelector(".ajax-loading-block-window");
@@ -44,6 +44,14 @@ public class MethodHandles {
         explicitWait(locator,20);
         scrollIntoElement(driver, webElement(locator));
         webElement(locator).click();
+
+    }
+
+    protected void sendKeys(By locator,String text){
+        invisibilityOf(loader,20);
+        explicitWait(locator,20);
+        scrollIntoElement(driver, webElement(locator));
+        webElement(locator).sendKeys(text);
 
     }
 
