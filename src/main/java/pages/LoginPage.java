@@ -15,6 +15,8 @@ public class LoginPage extends MethodHandles {
 
     private final By loginButton = By.cssSelector("button.button-1.login-button");
 
+    private final By pleasSignInTitle = By.cssSelector(".page-title >h1");
+
     private void insertUsername(String username){
         sendKeys(usernameField,username);
     }
@@ -28,5 +30,8 @@ public class LoginPage extends MethodHandles {
         insertUsername(username);
         insertPassword(password);
         clickOnLoginButton();
+    }
+    public String  getLoginInValidation(){
+        return getText(pleasSignInTitle);
     }
 }
