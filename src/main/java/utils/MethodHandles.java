@@ -9,6 +9,8 @@ import java.time.Duration;
 
 public class MethodHandles {
 
+    private int explicitWaitTime = 20;
+    private int explicitWaitTimeForInvisibility = 20;
     protected WebDriver driver;
 
     WebDriverWait wait;
@@ -43,36 +45,73 @@ public class MethodHandles {
     }
 
     protected void click(By locator){
-        for (int i = 0 ;i<10;i++){
+        for (int i = 0;i<10;i++){
             try {
-                invisibilityOf(loader,20);
-                explicitWait(locator,20);
+                invisibilityOf(loader,explicitWaitTimeForInvisibility);
+                explicitWait(locator,explicitWaitTime);
 //                scrollIntoElement(driver,webElement(locator));
                 webElement(locator).click();
                 break;
-            }catch (StaleElementReferenceException |ElementNotInteractableException e){
+            }catch (StaleElementReferenceException e){
 
             }
         }
     }
 
     protected void sendKeys(By locator,String text){
-        invisibilityOf(loader,20);
-        explicitWait(locator,20);
-        scrollIntoElement(driver, webElement(locator));
-        webElement(locator).sendKeys(text);
+        for (int i = 0 ;i<10;i++){
+            try {
+                invisibilityOf(loader,explicitWaitTimeForInvisibility);
+                explicitWait(locator,explicitWaitTime);
+                scrollIntoElement(driver, webElement(locator));
+                webElement(locator).sendKeys(text);
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
 
     }
-    protected String  getText(By locator){
-        invisibilityOf(loader,20);
-        explicitWait(locator,20);
-        scrollIntoElement(driver, webElement(locator));
-        return webElement(locator).getText();
+    protected String getText(By locator){
+        String text = null;
+        for (int i =0;i<10;i++){
+            try {
+                invisibilityOf(loader,explicitWaitTimeForInvisibility);
+                explicitWait(locator,explicitWaitTime);
+                scrollIntoElement(driver, webElement(locator));
+                text = webElement(locator).getText();
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
+        return text;
 
     }
     protected void hoverOverElement(By locator){
-        actions = new Actions(driver);
-        actions.moveToElement(webElement(locator)).build().perform();
+        for (int i = 0;i<10;i++){
+            try {
+                actions = new Actions(driver);
+                actions.moveToElement(webElement(locator)).build().perform();
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
+    }
+    protected boolean isDisplayed(By locator){
+        boolean flag = false;
+        for (int i =0;i<10;i++){
+            try {
+                invisibilityOf(loader,explicitWaitTimeForInvisibility);
+                explicitWait(locator,explicitWaitTime);
+                flag = webElement(locator).isDisplayed();
+                break;
+            }catch (StaleElementReferenceException e){
+
+            }
+        }
+        return flag;
     }
 
 }

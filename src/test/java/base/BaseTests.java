@@ -33,7 +33,6 @@ public class BaseTests {
     public void goHome(Method method) throws Exception {
         driver.get(readDataFromJson.readJsonFile().URL);
         ScreenRecorderUtil.startRecord(method.getName());
-
     }
 
     @Parameters("browser")
