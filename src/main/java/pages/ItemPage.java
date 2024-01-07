@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.MethodHandles;
 
-public class ItemPage extends MethodHandles {
+public class ItemPage extends HeaderAndFooter {
     public ItemPage(WebDriver driver) {
         super(driver);
     }

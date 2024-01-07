@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.MethodHandles;
 
-public class NoteBooksPage extends MethodHandles {
+public class NoteBooksPage extends HeaderAndFooter {
     public NoteBooksPage(WebDriver driver) {
         super(driver);
     }

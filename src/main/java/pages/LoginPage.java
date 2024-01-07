@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 import utils.MethodHandles;
 
-public class LoginPage extends MethodHandles {
+public class LoginPage extends HeaderAndFooter {
     public LoginPage(WebDriver driver) {
         super(driver);
     }

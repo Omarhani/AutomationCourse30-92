@@ -2,7 +2,6 @@ package login;
 
 
 import base.BaseTests;
-import data.Login;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;

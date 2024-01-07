@@ -4,7 +4,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class MethodHandles {
@@ -12,7 +11,6 @@ public class MethodHandles {
     private int explicitWaitTime = 20;
     private int explicitWaitTimeForInvisibility = 20;
     protected WebDriver driver;
-
     WebDriverWait wait;
     Actions actions;
     private final By loader = By.cssSelector(".ajax-loading-block-window");
@@ -49,7 +47,8 @@ public class MethodHandles {
             try {
                 invisibilityOf(loader,explicitWaitTimeForInvisibility);
                 explicitWait(locator,explicitWaitTime);
-//                scrollIntoElement(driver,webElement(locator));
+                scrollIntoElement(driver,webElement(locator));
+                addBorderToElement(driver,webElement(locator));
                 webElement(locator).click();
                 break;
             }catch (StaleElementReferenceException e){
@@ -64,6 +63,7 @@ public class MethodHandles {
                 invisibilityOf(loader,explicitWaitTimeForInvisibility);
                 explicitWait(locator,explicitWaitTime);
                 scrollIntoElement(driver, webElement(locator));
+                addBorderToElement(driver,webElement(locator));
                 webElement(locator).sendKeys(text);
                 break;
             }catch (StaleElementReferenceException e){
@@ -79,6 +79,7 @@ public class MethodHandles {
                 invisibilityOf(loader,explicitWaitTimeForInvisibility);
                 explicitWait(locator,explicitWaitTime);
                 scrollIntoElement(driver, webElement(locator));
+                addBorderToElement(driver,webElement(locator));
                 text = webElement(locator).getText();
                 break;
             }catch (StaleElementReferenceException e){
@@ -93,6 +94,7 @@ public class MethodHandles {
             try {
                 actions = new Actions(driver);
                 actions.moveToElement(webElement(locator)).build().perform();
+                addBorderToElement(driver,webElement(locator));
                 break;
             }catch (StaleElementReferenceException e){
 
@@ -105,6 +107,7 @@ public class MethodHandles {
             try {
                 invisibilityOf(loader,explicitWaitTimeForInvisibility);
                 explicitWait(locator,explicitWaitTime);
+                addBorderToElement(driver,webElement(locator));
                 flag = webElement(locator).isDisplayed();
                 break;
             }catch (StaleElementReferenceException e){
@@ -112,6 +115,11 @@ public class MethodHandles {
             }
         }
         return flag;
+    }
+
+    public static void addBorderToElement(WebDriver driver, WebElement element) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].style.border = '8px solid red';", element);
     }
 
 }
